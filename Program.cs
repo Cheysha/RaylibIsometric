@@ -33,16 +33,15 @@ class Program
     
     public static void Main()
     {
-        int screenWidth = 800;
-        int screenHeight = 400;
-        var smallWidth = screenWidth / 2;
-        var smallHeight = screenHeight / 2;
+        int screenWidth = 1280;
+        int screenHeight = 720;
+        var smallWidth = screenWidth / 1;
+        var smallHeight = screenHeight / 1;
         
-
         Raylib.InitWindow(screenWidth, screenHeight, "Hello World");
         string workingDirectory = Environment.CurrentDirectory;
         Raylib.SetTargetFPS(60); 
-        RenderTexture2D renderTexture = Raylib.LoadRenderTexture(480,240);
+        RenderTexture2D renderTexture = Raylib.LoadRenderTexture(smallWidth, smallHeight);
         Raylib.InitAudioDevice();  // Initialize audio device
         Music backgroundMusic = Raylib.LoadMusicStream($"{workingDirectory}/bg.mp3");
         Raylib.PlayMusicStream(backgroundMusic); 
@@ -65,7 +64,7 @@ class Program
         Image bg;
         int animFrames = 0;
         int currentAnimFrame = 0;
-        int frameDelay = 8;
+        int frameDelay = 6;
         int frameCounter = 0;
         uint nextFrameDataOffset = 0; 
         // because we insist on pointer, which c# hates
@@ -128,12 +127,16 @@ class Program
                 DRAW
             */
         
-            
-
-
             //  DRAW game to texture
             Raylib.BeginTextureMode(renderTexture);
-            Raylib.DrawTextureEx(bgtexture,new Vector2(0,0),0,2,Color.White); // draw background
+            
+            // draw background, this can be changed if want different style
+            Raylib.DrawTexturePro(bgtexture,
+                                    new Rectangle(0,0,smallWidth,-smallHeight),
+                                    new Rectangle(0,0,screenWidth,screenHeight),
+                                    new Vector2(0,0),
+                                    0f,Color.White); 
+
             Raylib.ClearBackground(Color.DarkBlue);
             Raylib.BeginMode3D(camera);
 
@@ -154,7 +157,8 @@ class Program
             Raylib.DrawTexturePro(renderTexture.Texture,
                                     new Rectangle(0,0,smallWidth,-smallHeight),
                                     new Rectangle(0,0,screenWidth,screenHeight),
-                                    new Vector2(0,0),0f,Color.White);
+                                    new Vector2(0,0),
+                                    0f,Color.White);
 
             // DRAW DEBUG
             Raylib.DrawText($"{charPos}",0,0,0,Color.White);
