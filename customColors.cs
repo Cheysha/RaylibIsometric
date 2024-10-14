@@ -6,7 +6,7 @@ public static class CustomColors
     // Custom raylib color palette for amazing visuals on WHITE background
     public static readonly Color LIGHTGRAY = new Color(200, 200, 200, 255);   // Light Gray
     public static readonly Color GRAY = new Color(130, 130, 130, 255);       // Gray
-    public static readonly Color DARKGRAY = new Color(80, 80, 80, 255);       // Dark Gray
+    public static readonly Color DARKGRAY = new Color(40, 40, 40, 255);       // Dark Gray
     public static readonly Color YELLOW = new Color(253, 249, 0, 255);        // Yellow
     public static readonly Color GOLD = new Color(255, 203, 0, 255);          // Gold
     public static readonly Color ORANGE = new Color(255, 161, 0, 255);        // Orange
